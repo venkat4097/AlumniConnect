@@ -43,7 +43,7 @@ return (
       <h1 className="text-4xl font-bold mb-10 text-green-800">My Connections</h1>
 
       {/* ✅ Approved Connections */}
-      <section className="mb-16">
+{/*       <section className="mb-16">
         <h2 className="text-2xl font-semibold text-gray-700 mb-6">✅ Approved Connections</h2>
         {connections.length === 0 ? (
           <p className="text-gray-500">You haven't connected with anyone yet.</p>
@@ -64,7 +64,29 @@ return (
           </div>
         )}
       </section>
+ */}
+        <section className="mb-16"> 
+  <h2 className="text-2xl font-semibold text-gray-700 mb-6">✅ Approved Connections</h2> 
 
+  {connections.length === 0 ? ( 
+    <p className="text-gray-500">You haven't connected with anyone yet.</p> 
+  ) : ( 
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> 
+      {Array.from(new Map(connections.map((c) => [c._id, c])).values()).map((c) => ( 
+        <div 
+          key={c._id} 
+          className="bg-white border border-gray-200 p-4 rounded-lg shadow-sm" 
+        > 
+          <p className="font-medium text-lg">{c.name}</p> 
+          <p className="text-sm text-gray-600">{c.email}</p> 
+          <span className="inline-block mt-2 text-green-600 text-sm font-semibold"> 
+            Connected 
+          </span> 
+        </div> 
+      ))} 
+    </div> 
+  )} 
+</section>
       {/* 📨 Incoming Requests */}
       {user.role === "alumni" && (
         <section className="mb-16">
