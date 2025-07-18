@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+/* Dark theme base */
+body {
+  background-color: #121212;
+  color: white;
+  font-family: 'Inter', 'Poppins', sans-serif;
+}
+
+/* Custom scroll (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+/* Focus ring for inputs */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #1DB954;
+}
+
+

@@ -26,71 +26,87 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-lg p-8 rounded-md w-full max-w-md space-y-4"
+   <div className="flex items-center justify-center min-h-screen bg-[#121212] px-4">
+  <form
+    onSubmit={handleSubmit}
+    className="bg-[#1e1e1e] shadow-xl text-white p-8 rounded-xl w-full max-w-md space-y-5"
+  >
+    <h2 className="text-3xl font-bold text-center">Join Alumni Connect</h2>
+
+    {error && (
+      <p className="text-sm text-center text-red-500 bg-red-500 bg-opacity-10 p-2 rounded">
+        {error}
+      </p>
+    )}
+
+    <input
+      type="text"
+      name="name"
+      placeholder="Full name"
+      value={formData.name}
+      onChange={handleChange}
+      className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#333] rounded-md focus:ring-2 focus:ring-[#1DB954] focus:outline-none"
+      required
+      autoFocus
+    />
+
+    <input
+      type="email"
+      name="email"
+      placeholder="Email address"
+      value={formData.email}
+      onChange={handleChange}
+      className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#333] rounded-md focus:ring-2 focus:ring-[#1DB954] focus:outline-none"
+      required
+    />
+
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      value={formData.password}
+      onChange={handleChange}
+      className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#333] rounded-md focus:ring-2 focus:ring-[#1DB954] focus:outline-none"
+      required
+    />
+
+    <p className="text-sm text-gray-400">Use a strong password (min 6 characters)</p>
+
+    <select
+      name="role"
+      value={formData.role}
+      onChange={handleChange}
+      className="w-full px-4 py-3 bg-[#2a2a2a] text-white border border-[#333] rounded-md focus:ring-2 focus:ring-[#1DB954] focus:outline-none"
+    >
+      <option value="student">Student</option>
+      <option value="alumni">Alumni</option>
+    </select>
+
+    <button
+      type="submit"
+      disabled={loading}
+      className={`w-full py-3 rounded-md text-black font-semibold ${
+        loading
+          ? "bg-gray-500 cursor-not-allowed"
+          : "bg-[#1DB954] hover:bg-[#1aa34a] transition"
+      }`}
+    >
+      {loading ? "Registering..." : "Register"}
+    </button>
+
+    <div className="flex flex-wrap justify-center gap-2 text-sm text-gray-400">
+      <p>Already registered?</p>
+      <button
+        type="button"
+        className="text-[#1DB954] hover:underline"
+        onClick={() => navigate("/login")}
       >
-        <h2 className="text-2xl font-bold text-center text-gray-700">Register</h2>
-
-        {error && <p className="text-red-500 text-center">{error}</p>}
-
-        <input
-          type="text"
-          name="name"
-          placeholder="Full name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
-          required
-          autoFocus
-        />
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email address"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
-          required
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
-          required
-        />
-
-        <p className="text-sm text-gray-500">Use a strong password (min 6 characters)</p>
-
-        <select
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-md focus:outline-none"
-        >
-          <option value="student">Student</option>
-          <option value="alumni">Alumni</option>
-        </select>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full py-2 rounded-md text-white ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"}`}
-        >
-          {loading ? "Registering..." : "Register"}
-        </button>
-        <div className="flex gap-2">
-        <p className="text-gray-600">Already Registered</p>
-       <button className="text-blue-600 cursor-pointer" onClick={()=>{navigate("/login")}}>Login</button>
-        </div>
-      </form>
+        Login
+      </button>
     </div>
+  </form>
+</div>
+
   );
 };
 

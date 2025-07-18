@@ -144,162 +144,155 @@ if (!user) return <p className="text-center mt-10">Loading...</p>;
 // );
 
 return (
-  <div className="min-h-screen bg-gray-50 text-gray-800">
-    {/* Header */}
-    <header className="bg-white shadow-sm py-4 px-6 sm:px-8 flex flex-col sm:flex-row justify-between items-center border-b">
-      <div className="flex items-center gap-4 w-full sm:w-auto">
-        <div className="relative">
-          {user.profilePic ? (
-            <img
-              src={user.profilePic}
-              alt="Profile"
-              className="w-14 h-14 rounded-full border-2 border-blue-500 object-cover"
-            />
-          ) : (
-            <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-lg font-semibold text-blue-600">
-              {user.name.charAt(0).toUpperCase()}
-            </div>
-          )}
-          <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold">{user.name}</h1>
-          <p className="text-sm text-gray-500">{user.email}</p>
-        </div>
+  <div className="min-h-screen bg-[#121212] text-white">
+  {/* Header */}
+  <header className="bg-[#1a1a1a] border-b border-gray-800 px-6 py-5 flex flex-col sm:flex-row justify-between items-center shadow-md">
+    <div className="flex items-center gap-4 w-full sm:w-auto">
+      <div className="relative">
+        {user.profilePic ? (
+          <img
+            src={user.profilePic}
+            alt="Profile"
+            className="w-14 h-14 rounded-full border-2 border-green-500 object-cover"
+          />
+        ) : (
+          <div className="w-14 h-14 bg-green-900 rounded-full flex items-center justify-center text-lg font-semibold text-green-400">
+            {user.name.charAt(0).toUpperCase()}
+          </div>
+        )}
+        <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-[#1a1a1a] rounded-full" />
       </div>
+      <div>
+        <h1 className="text-2xl font-bold text-white">{user.name}</h1>
+        <p className="text-sm text-gray-400">{user.email}</p>
+      </div>
+    </div>
+    <div className="mt-4 sm:mt-0 flex gap-3">
+      <button
+        onClick={() => navigate("/profile")}
+        className="text-green-400 border border-green-600 hover:bg-green-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+      >
+        <FaEdit className="inline mr-1" /> Edit
+      </button>
+      <button
+        onClick={logout}
+        className="text-red-400 border border-red-600 hover:bg-red-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+      >
+        <FaSignOutAlt className="inline mr-1" /> Logout
+      </button>
+    </div>
+  </header>
 
-      <div className="mt-4 sm:mt-0 flex gap-3">
+  {/* Main Section */}
+  <main className="max-w-5xl mx-auto px-6 py-10 space-y-12">
+    {/* Personal Info */}
+    <section className="grid md:grid-cols-3 gap-8">
+      <div>
+        <h2 className="text-lg font-semibold text-green-400 mb-1">Company</h2>
+        <p className="text-gray-300">{user.company || "Not specified"}</p>
+      </div>
+      <div>
+        <h2 className="text-lg font-semibold text-green-400 mb-1">Stream</h2>
+        <p className="text-gray-300">{user.stream || "Not specified"}</p>
+      </div>
+      <div>
+        <h2 className="text-lg font-semibold text-green-400 mb-1">Bio</h2>
+        <p className="text-gray-300">{user.bio || "Add a bio to let others know more about you."}</p>
+      </div>
+    </section>
+
+    {/* Quick Actions */}
+    <section>
+      <h2 className="text-lg font-semibold text-green-400 mb-4">Quick Actions</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <button
-          onClick={() => navigate("/profile")}
-          className="text-blue-600 border border-blue-500 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-medium transition"
+          onClick={() => navigate("/connections")}
+          className="flex items-center gap-3 bg-[#1a1a1a] border border-gray-700 rounded-xl p-4 hover:bg-[#2a2a2a] transition"
         >
-          <FaEdit className="inline mr-1" /> Edit
+          <div className="bg-green-900 p-2 rounded-full">
+            <FaLink className="text-green-400" />
+          </div>
+          <div>
+            <p className="font-medium text-white">Connections</p>
+            <p className="text-sm text-gray-400">View your network</p>
+          </div>
         </button>
         <button
-          onClick={logout}
-          className="text-red-600 border border-red-500 hover:bg-red-50 px-4 py-2 rounded-lg text-sm font-medium transition"
+          onClick={() => navigate("/chat")}
+          className="flex items-center gap-3 bg-[#1a1a1a] border border-gray-700 rounded-xl p-4 hover:bg-[#2a2a2a] transition"
         >
-          <FaSignOutAlt className="inline mr-1" /> Logout
+          <div className="bg-green-900 p-2 rounded-full">
+            <FaComments className="text-green-400" />
+          </div>
+          <div>
+            <p className="font-medium text-white">Messages</p>
+            <p className="text-sm text-gray-400">Start chatting</p>
+          </div>
         </button>
       </div>
-    </header>
+    </section>
 
-    {/* Main */}
-    <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
-      {/* Profile Info */}
-      <section className="bg-white rounded-xl shadow-sm border mb-8">
-        <div className="px-6 py-4 border-b bg-gradient-to-r from-blue-50 to-white">
-          <h2 className="text-lg font-semibold text-blue-800">Profile Information</h2>
-        </div>
-        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <p className="text-sm font-medium text-gray-500">Company</p>
-            <p className="mt-1 text-gray-800">{user.company || "Not specified"}</p>
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-500">Stream</p>
-            <p className="mt-1 text-gray-800">{user.stream || "Not specified"}</p>
-          </div>
-          <div className="md:col-span-2">
-            <p className="text-sm font-medium text-gray-500">Bio</p>
-            <p className="mt-1 text-gray-800">
-              {user.bio || "Add a bio to let others know more about you."}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Actions */}
-      <section className="mb-8">
-        <h2 className="text-lg font-semibold text-blue-800 mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button
-            onClick={() => navigate("/connections")}
-            className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg p-4 hover:shadow transition"
-          >
-            <div className="bg-blue-100 p-2 rounded-full">
-              <FaLink className="text-blue-600" />
-            </div>
-            <div>
-              <p className="font-medium text-gray-800">Connections</p>
-              <p className="text-sm text-gray-500">View your network</p>
-            </div>
-          </button>
-
-          <button
-            onClick={() => navigate("/chat")}
-            className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg p-4 hover:shadow transition"
-          >
-            <div className="bg-blue-100 p-2 rounded-full">
-              <FaComments className="text-blue-600" />
-            </div>
-            <div>
-              <p className="font-medium text-gray-800">Messages</p>
-              <p className="text-sm text-gray-500">Start chatting</p>
-            </div>
-          </button>
-        </div>
-      </section>
-
-      {/* Incoming Requests */}
-      {incomingRequests.length > 0 && (
-        <section>
-          <h2 className="text-lg font-semibold text-blue-800 mb-4">
-            Connection Requests ({incomingRequests.length})
-          </h2>
-          <div className="space-y-4">
-            {incomingRequests.map((student) => (
-              <div
-                key={student._id}
-                className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-white border border-gray-200 rounded-lg gap-4"
-              >
-                <div className="flex items-center gap-3">
-                  {student.profilePic ? (
-                    <img
-                      src={student.profilePic}
-                      alt={student.name}
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-sm font-medium text-gray-600">
-                      {student.name.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                  <div>
-                    <p className="font-medium text-gray-800">{student.name}</p>
-                    <p className="text-sm text-gray-500">{student.email}</p>
+    {/* Incoming Requests */}
+    {incomingRequests.length > 0 && (
+      <section>
+        <h2 className="text-lg font-semibold text-green-400 mb-4">
+          Connection Requests ({incomingRequests.length})
+        </h2>
+        <div className="space-y-4">
+          {incomingRequests.map((student) => (
+            <div
+              key={student._id}
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-[#1a1a1a] border border-gray-700 rounded-xl gap-4"
+            >
+              <div className="flex items-center gap-3">
+                {student.profilePic ? (
+                  <img
+                    src={student.profilePic}
+                    alt={student.name}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-sm font-medium text-gray-300">
+                    {student.name.charAt(0).toUpperCase()}
                   </div>
-                </div>
-
-                <div className="flex gap-2 w-full sm:w-auto">
-                  <button
-                    onClick={async () => {
-                      const res = await acceptRequest(student._id);
-                      toast.success(res.message);
-                      window.location.reload();
-                    }}
-                    className="flex-1 sm:flex-none text-blue-600 border border-blue-500 hover:bg-blue-50 px-3 py-2 rounded-lg text-sm font-medium"
-                  >
-                    Accept
-                  </button>
-                  <button
-                    onClick={async () => {
-                      const res = await rejectRequest(student._id);
-                      toast.success(res.message);
-                      window.location.reload();
-                    }}
-                    className="flex-1 sm:flex-none text-red-600 border border-red-500 hover:bg-red-50 px-3 py-2 rounded-lg text-sm font-medium"
-                  >
-                    Decline
-                  </button>
+                )}
+                <div>
+                  <p className="font-medium text-white">{student.name}</p>
+                  <p className="text-sm text-gray-400">{student.email}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-      )}
-    </main>
-  </div>
+              <div className="flex gap-2 w-full sm:w-auto">
+                <button
+                  onClick={async () => {
+                    const res = await acceptRequest(student._id);
+                    toast.success(res.message);
+                    window.location.reload();
+                  }}
+                  className="flex-1 sm:flex-none text-green-400 border border-green-600 hover:bg-green-800 hover:text-white px-3 py-2 rounded-lg text-sm font-medium"
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={async () => {
+                    const res = await rejectRequest(student._id);
+                    toast.success(res.message);
+                    window.location.reload();
+                  }}
+                  className="flex-1 sm:flex-none text-red-400 border border-red-600 hover:bg-red-800 hover:text-white px-3 py-2 rounded-lg text-sm font-medium"
+                >
+                  Decline
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+</div>
+
+
+
 );
 
 };

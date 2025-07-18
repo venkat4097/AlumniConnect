@@ -29,54 +29,64 @@ if (!alumni)
   return <p className="text-center mt-10">Loading...</p>;
 
 return (
-  <div className="max-w-4xl mx-auto mt-12 px-6 sm:px-10 py-8 bg-white rounded-2xl shadow-md border border-gray-200">
-    <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-      {/* Profile Picture */}
-      <div className="flex-shrink-0">
-        {alumni.profilePic ? (
-          <img
-            src={alumni.profilePic}
-            alt={`${alumni.name}'s Profile`}
-            className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-blue-500"
-          />
-        ) : (
-          <div className="w-32 h-32 md:w-36 md:h-36 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 text-sm">
-            No Image
-          </div>
-        )}
+<div className="min-h-screen bg-[#121212] px-6 py-12 text-white font-sans">
+  {/* Header */}
+  {/* <div className="max-w-6xl mx-auto mb-12">
+    <h1 className="text-4xl font-extrabold text-[#1DB954]">Alumni Profile</h1>
+    <p className="text-gray-400 text-sm mt-1">Welcome back, {alumni.name.split(" ")[0]}</p>
+  </div> */}
+
+  {/* Profile Section */}
+  <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12">
+    
+    {/* Profile Picture */}
+    <div className="flex-shrink-0">
+      {alumni.profilePic ? (
+        <img
+          src={alumni.profilePic}
+          alt="Profile"
+          className="w-40 h-40 rounded-full object-cover border-4 border-[#1DB954]"
+        />
+      ) : (
+        <div className="w-40 h-40 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 text-sm">
+          No Image
+        </div>
+      )}
+    </div>
+
+    {/* Info Section */}
+    <div className="flex-1 w-full space-y-6">
+      <div>
+        <h2 className="text-xl text-gray-400 uppercase tracking-widest">Name</h2>
+        <p className="text-2xl font-semibold text-white">{alumni.name}</p>
       </div>
 
-      {/* Info Section */}
-      <div className="flex-1">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">{alumni.name}</h1>
-        <p className="text-gray-500 mb-6">Alumni Profile Overview</p>
+      <div>
+        <h2 className="text-xl text-gray-400 uppercase tracking-widest">Email</h2>
+        <p className="text-white">{alumni.email}</p>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
-          <div>
-            <p className="font-medium text-gray-600">Email</p>
-            <p>{alumni.email}</p>
-          </div>
-
-          <div>
-            <p className="font-medium text-gray-600">Company</p>
-            <p>{alumni.company || "N/A"}</p>
-          </div>
-
-          <div>
-            <p className="font-medium text-gray-600">Stream</p>
-            <p>{alumni.stream || "N/A"}</p>
-          </div>
-
-          <div>
-            <p className="font-medium text-gray-600">Bio</p>
-            <p className="text-gray-600">
-              {alumni.bio || "No bio available."}
-            </p>
-          </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h2 className="text-xl text-gray-400 uppercase tracking-widest">Company</h2>
+          <p className="text-white">{alumni.company || "Not provided"}</p>
         </div>
+
+        <div>
+          <h2 className="text-xl text-gray-400 uppercase tracking-widest">Stream</h2>
+          <p className="text-white">{alumni.stream || "Not provided"}</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 className="text-xl text-gray-400 uppercase tracking-widest">Bio</h2>
+        <p className="text-white whitespace-pre-line">{alumni.bio || "No bio available."}</p>
       </div>
     </div>
   </div>
+</div>
+
+
 );
 
 
