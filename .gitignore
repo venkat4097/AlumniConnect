@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+**/node_modules/
+
+# Build output
+**/dist/
+**/build/
+**/.next/
+**/.nuxt/
+**/.output/
+dist-ssr/
+
+# Environment variables
+**/.env
+**/.env.* # e.g., .env.local, .env.production
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Optional: lockfiles (if you're using only one type of package manager)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Optional: local config or cache files
+*.local
