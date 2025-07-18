@@ -21,7 +21,7 @@ export const ChatProvider = ({ children }) => {
   useEffect(() => {
     if (!user?._id) return;
 
-    const newSocket = io("http://localhost:5000", {
+    const newSocket = io("https://alumniconnect-backend-ha93.onrender.com", {
       query: { userId: user._id },
     });
 
